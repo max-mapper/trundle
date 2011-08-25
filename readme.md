@@ -1,0 +1,1 @@
+work in progress. use couch documents to represent processes that you want to monitor and deploy on remote servers. more docs soon

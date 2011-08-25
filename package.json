@@ -1,0 +1,30 @@
+{
+  "name": "trundle",
+  "preferGlobal": "true",
+  "description": "Manage node deployment with CouchDB",
+  "version": "0.0.1",
+  "author": "Max Ogden <max@maxogden.com>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/maxogden/trundle.git"
+  },
+  "keywords": [
+    "couchdb",
+    "deployment",
+    "node",
+    "sysadmin"
+  ],
+  "dependencies": {
+    "request": "2.x.x",
+    "underscore": "1.x.x",
+    "optimist": "0.2.x",
+    "deferred": "0.2.x"
+  },
+  "bin": {
+    "trundle": "./bin/trundle"
+  },
+  "main": "./lib/trundle",
+  "engines": {
+    "node": ">= 0.4.0"
+  }
+}

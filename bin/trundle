@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+var path = require('path'),
+    fs = require('fs'),
+    sys  = require('sys'),
+    optimist = require('optimist'),
+    trundle = require('./../lib/trundle');
+
+var action, arg, accepts = [
+  'load'
+];
+
+// pulls out action and arg, e.g. "load" and "http://localhost:5984/processes" from "trundle load http://localhost:5984/processes"
+if (accepts.indexOf(process.argv[2]) !== -1) {
+  action = process.argv.splice(2,1)[0];  
+  if (process.argv[2]) arg = process.argv.splice(2,1)[0];
+}
+
+var argv = require('optimist')(process.argv).boolean(['v', 'verbose', 'a', 'append', 's', 'silent']).argv;
+
+if (action && arg) {
+  trundle[action](arg);
+} else {
+  argv.help = true;
+}
+
+var help = [
+  'usage: trundle [action] [argument]',
+  '',
+  'Loads node scripts from a Couch and spawns them with Forever',
+  '',
+  'actions:',
+  '  load                Load and start node processes from ARGUMENT (couch view URL)',
+  '',
+  'options:',
+  '  -h, --help       You\'re staring at it',
+  ''
+].join('\n');
+
+//
+// Show help prompt if requested or if the
+// incorrect usage options are supplied
+//
+if (argv.h || argv.help || (argv._.length === 0)
+  && (!argv.c && !argv.command)) {
+  return sys.puts(help);
+}
