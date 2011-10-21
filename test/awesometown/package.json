@@ -1,0 +1,6 @@
+{
+  "name": "fakemodule",
+  "scripts": {
+    "start": "pizza.js"
+  }
+}

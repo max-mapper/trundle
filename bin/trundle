@@ -19,7 +19,10 @@ if (accepts.indexOf(process.argv[2]) !== -1) {
 var argv = require('optimist')(process.argv).boolean(['v', 'verbose', 'a', 'append', 's', 'silent']).argv;
 
 if (action && arg) {
-  trundle[action](arg);
+  trundle[action](arg, function(err, resp) {
+    if (err) console.log("Error: " + err);
+    console.log(resp);
+  });
 } else {
   argv.help = true;
 }
